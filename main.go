@@ -3,13 +3,29 @@ package main
 import (
 	"chip8/chip"
 	"fmt"
+	"log"
+	"os"
 	"time"
 )
 
 func main() {
-	workingChip := chip.New()
+	ibm, err := os.ReadFile("chip_binaries/ibm.ch8")
+	if err != nil {
+		log.Fatal(err)
+	}
 
-	time.Sleep(time.Second * 10)
+	workingChip := chip.NewWithMemory(ibm)
+	outputChannel := workingChip.GetOutputChannel()
 
-	fmt.Println(workingChip)
+	go func() {
+		for {
+			fmt.Println(<-outputChannel)
+		}
+	}()
+
+	for {
+		workingChip.Run()
+		time.Sleep(time.Millisecond * 100)
+	}
+
 }
