@@ -253,9 +253,9 @@ func (c *Chip) RenderDisplay() {
 		}
 
 		if c.display[i] == true {
-			builder.WriteString("■")
+			builder.WriteString("██")
 		} else {
-			builder.WriteString(" ")
+			builder.WriteString("  ")
 		}
 
 	}

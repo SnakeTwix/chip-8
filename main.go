@@ -9,7 +9,7 @@ import (
 )
 
 func main() {
-	ibm, err := os.ReadFile("chip_binaries/ibm.ch8")
+	ibm, err := os.ReadFile("chip_binaries/2-ibm-logo.ch8")
 	if err != nil {
 		log.Fatal(err)
 	}
